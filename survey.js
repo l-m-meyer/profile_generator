@@ -23,17 +23,34 @@ const questions = [
   'What is your superpower? In a few words, tell us what you are amazing at! '
 ];
 
-for (const question of questions) {
-  if (question !== questions[-1]) {
-    rl.question(question, (answer) => {
-      console.log(`Thanks for your answer: ${answer}!`);
-      for (const key in userProfile) {
-        userProfile[key] = answer;
-      }
-      
-      // console.log(userProfile);
-      rl.close();
-    });
-  }
-}
-
+rl.question(questions[0], (answer) => {
+  console.log(`Nice to meet you ${answer}!`);
+  userProfile.userName = answer;
+  rl.question(questions[1], (answer) => {
+    console.log(`${answer} sounds fun!`);
+    userProfile.activity = answer;
+    rl.question(questions[2], (answer) => {
+      console.log(`I love ${answer}!`);
+      userProfile.music = answer;
+      rl.question(questions[3], (answer) => {
+        console.log(`I find ${answer} to be the best meal too!`);
+        userProfile.mealTime = answer;
+        rl.question(questions[4], (answer) => {
+          console.log(`Tasty ${answer}!`);
+          userProfile.food = answer;
+          rl.question(questions[5], (answer) => {
+            console.log(`${answer}, eh? To each their own...`);
+            userProfile.sport = answer;
+            rl.question(questions[6], (answer) => {
+              console.log(`${answer} is a great superpower!`);
+              userProfile.superpower = answer;
+              
+              console.log(`${userProfile.userName} loves listening to ${userProfile.music} while ${userProfile.activity}, devouring ${userProfile.food} for ${userProfile.mealTime}, prefers ${userProfile.sport} over any sport, and is amazing at ${userProfile.superpower}.`);
+              rl.close();
+            })
+          })
+        })
+      })
+    })
+  })
+});
